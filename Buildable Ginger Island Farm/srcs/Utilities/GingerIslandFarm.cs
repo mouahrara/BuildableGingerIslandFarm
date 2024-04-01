@@ -15,6 +15,7 @@ namespace BuildableGingerIslandFarm.Utilities
 				e.Edit(asset =>
 				{
 					asset.AsDictionary<string, LocationData>().Data["IslandWest"].CreateOnLoad.AlwaysActive = true;
+					MakeBuildable();
 				});
 			}
 		}
@@ -23,15 +24,15 @@ namespace BuildableGingerIslandFarm.Utilities
 		{
 			GameLocation location = Game1.getLocationFromName("IslandWest");
 
-			if (!location.HasMapPropertyWithValue("CanBuildHere") && Game1.player.hasOrWillReceiveMail("Island_UpgradeHouse"))
+			if (location is not null)
 			{
-				if (!location.HasMapPropertyWithValue("CanBuildHere"))
+				if (!location.HasMapPropertyWithValue("CanBuildHere") && Game1.player.hasOrWillReceiveMail("Island_UpgradeHouse"))
 				{
 					location.Map.Properties.Add("CanBuildHere", "T");
+					MakeInaccessibleAreasUnbuildable();
+					MakeFarmAreaBuildable();
+					UpdateSlimeArea();
 				}
-				MakeInaccessibleAreasUnbuildable();
-				MakeFarmAreaBuildable();
-				UpdateSlimeArea();
 			}
 		}
 
