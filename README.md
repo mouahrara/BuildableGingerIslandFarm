@@ -17,7 +17,7 @@ https://github.com/mouahrara/BuildableGingerIslandFarm/assets/131559634/76425a65
 English and French translations are included in the base mod, and contributions are welcome. To contribute, please submit a pull request on the [GitHub repository](https://github.com/mouahrara/BuildableGingerIslandFarm/pulls).
 
 ## Compatibility
-Buildable Ginger Island Farm is compatible with Stardew Valley 1.6.0+ on Linux/Mac/Windows, both single-player and multiplayer.
+Buildable Ginger Island Farm is compatible with Stardew Valley 1.6.0+ on Linux/Mac/Windows, both single-player and multiplayer. It is also compatible with [Lnh's Ginger Island Overhaul](https://www.nexusmods.com/stardewvalley/mods/15939).
 
 ## Frequently Asked Questions
 - **Can I use this mod on an existing save?**  
