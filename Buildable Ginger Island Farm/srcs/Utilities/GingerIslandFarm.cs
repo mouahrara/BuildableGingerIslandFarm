@@ -98,6 +98,10 @@ namespace BuildableGingerIslandFarm.Utilities
 			{
 				return TilesIslandOverhaulUtility.GetInaccessibleAreasTiles();
 			}
+			else if (Compatibility.IsModestMapsGingerIslandFarmLoaded)
+			{
+				return TilesModestMapsGingerIslandFarmUtility.GetInaccessibleAreasTiles();
+			}
 			else
 			{
 				return TilesDefaultUtility.GetInaccessibleAreasTiles();
@@ -110,6 +114,10 @@ namespace BuildableGingerIslandFarm.Utilities
 			{
 				return TilesIslandOverhaulUtility.GetFarmAreaTiles();
 			}
+			else if (Compatibility.IsModestMapsGingerIslandFarmLoaded)
+			{
+				return TilesModestMapsGingerIslandFarmUtility.GetFarmAreaTiles();
+			}
 			else
 			{
 				return TilesDefaultUtility.GetFarmAreaTiles();
@@ -121,6 +129,10 @@ namespace BuildableGingerIslandFarm.Utilities
 			if (Compatibility.IsIslandOverhaulLoaded)
 			{
 				return TilesIslandOverhaulUtility.GetSlimeAreaTiles();
+			}
+			else if (Compatibility.IsModestMapsGingerIslandFarmLoaded)
+			{
+				return TilesModestMapsGingerIslandFarmUtility.GetSlimeAreaTiles();
 			}
 			else
 			{
