@@ -20,9 +20,9 @@ English and French translations are included in the base mod, and contributions 
 Buildable Ginger Island Farm is compatible with Stardew Valley 1.6.0+ on Linux/Mac/Windows, both single-player and multiplayer. It is also compatible with [Lnh's Ginger Island Overhaul](https://www.nexusmods.com/stardewvalley/mods/15939).
 
 ## Frequently Asked Questions
-- **Can I use this mod on an existing save?**  
+- **Can I use this mod on an existing save?**\
 Yes, no problem at all.
-- **Can I uninstall this mod without any issues?**  
+- **Can I uninstall this mod without any issues?**\
 Yes, but it is recommended to demolish all the buildings on Ginger Island farm before uninstalling the mod. Without the mod, the Ginger Island farm will no longer be active when you are not there, which could cause unexpected behavior.
 
 ## See also
