@@ -4,6 +4,7 @@
 		<AssemblyName>BuildableGingerIslandFarm</AssemblyName>
 		<Version>1.0.3</Version>
 		<TargetFramework>net6.0</TargetFramework>
+		<EnableHarmony>true</EnableHarmony>
 		<ProjectDir>$([System.IO.Path]::Combine($(MSBuildThisFileDirectory), $(ProjectName)))</ProjectDir>
 	</PropertyGroup>
 	<ItemGroup>
