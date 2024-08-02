@@ -944,6 +944,8 @@ namespace BuildableGingerIslandFarm.Utilities
 				new(87, 39),
 				new(88, 39),
 				new(89, 39),
+				new(90, 39),
+				new(91, 39),
 				new(92, 39),
 				new(93, 39),
 				new(94, 39),
