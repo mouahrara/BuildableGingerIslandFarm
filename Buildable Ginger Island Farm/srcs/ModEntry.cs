@@ -28,7 +28,8 @@ namespace BuildableGingerIslandFarm
 			{
 				Harmony harmony = new(ModManifest.UniqueID);
 
-				// Apply building patches
+				// Apply patches
+				GameLocationPatch.Apply(harmony);
 				JunimoHutPatch.Apply(harmony);
 			}
 			catch (Exception e)
@@ -39,7 +40,6 @@ namespace BuildableGingerIslandFarm
 
 			// Subscribe to events
 			Helper.Events.GameLoop.GameLaunched += GameLaunchedHandler.Apply;
-			Helper.Events.GameLoop.DayStarted += DayStartedHandler.Apply;
 			Helper.Events.Content.AssetRequested += AssetRequestedHandler.Apply;
 		}
 	}

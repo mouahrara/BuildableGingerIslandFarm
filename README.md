@@ -8,8 +8,8 @@ The Buildable Ginger Island Farm Mod allows you to build on Ginger Island farm!
 - Run the game using **SMAPI**.
 
 ## How to use
-The next day, after unlocking the farmhouse on Ginger Island, you will be able to choose which farm you want to construct buildings on when opening either Robin's or the Wizard's construction menu. The Ginger Island farm now operates similarly to your main farm, allowing you to construct any type of building except cabins. This includes animal houses and special buildings such as obelisks, Junimo huts, etc.\
-By default, construction in the slime area is disabled. You can enable it from the mod configuration menu ([GMCM](https://www.nexusmods.com/stardewvalley/mods/5098)). Note that to relocate animals from one farm to another, you will need the [Relocate Farm Animals](https://www.nexusmods.com/stardewvalley/mods/20606) mod.
+After repairing the [Island Farmhouse](https://stardewvalleywiki.com/Island_Farmhouse), you will be able to choose which farm you want to construct buildings on when opening either Robin's or the Wizard's construction menu. The Ginger Island farm now operates similarly to your main farm, allowing you to construct any type of building except cabins. This includes animal houses and special buildings such as obelisks, Junimo huts, etc.\
+By default, construction in the slime area is disabled. You can enable it from the mod configuration menu ([GMCM](https://www.nexusmods.com/stardewvalley/mods/5098)). Note that to relocate buildings or farm animals from one farm to another, you will need the [Relocate Farm Animals](https://www.nexusmods.com/stardewvalley/mods/20606) mod.
 
 https://github.com/mouahrara/BuildableGingerIslandFarm/assets/131559634/76425a65-c9ba-42f8-9578-adff7b8e0c8f
 
