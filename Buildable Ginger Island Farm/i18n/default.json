@@ -1,8 +1,6 @@
 ﻿{
 	// Menu
 	"Menu.GingerIslandFarm.DisplayName": "Ginger Island Farm",
-	"Menu.CarpenterMenu.ChooseLocation": "Where do you want to manage buildings?",
-	"Menu.PurchaseAnimalsMenu.ChooseLocation": "Where do you want to manage animals?",
 
 	// GMCM
 	"GMCM.AllowBuildingInSlimeArea.Title": "Allow building in the slime area",

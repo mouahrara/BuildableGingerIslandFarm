@@ -15,27 +15,5 @@ namespace BuildableGingerIslandFarm.Utilities
 				});
 			}
 		}
-
-		public static void LocalizeCarpenterMenuChooseLocation(AssetRequestedEventArgs e)
-		{
-			if (e.NameWithoutLocale.IsEquivalentTo("Strings/Buildings"))
-			{
-				e.Edit(asset =>
-				{
-					asset.AsDictionary<string, string>().Data["Construction_ChooseLocation"] = ModEntry.Helper.Translation.Get("Menu.CarpenterMenu.ChooseLocation");
-				});
-			}
-		}
-
-		public static void LocalizePurchaseAnimalsMenuChooseLocation(AssetRequestedEventArgs e)
-		{
-			if (e.NameWithoutLocale.IsEquivalentTo("Strings/StringsFromCSFiles"))
-			{
-				e.Edit(asset =>
-				{
-					asset.AsDictionary<string, string>().Data["PurchaseAnimalsMenu.ChooseLocation"] = ModEntry.Helper.Translation.Get("Menu.PurchaseAnimalsMenu.ChooseLocation");
-				});
-			}
-		}
 	}
 }
