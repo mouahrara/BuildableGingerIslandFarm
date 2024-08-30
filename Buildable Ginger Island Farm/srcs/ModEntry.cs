@@ -31,7 +31,6 @@ namespace BuildableGingerIslandFarm
 				// Apply patches
 				GameLocationPatch.Apply(harmony);
 				IslandWestPatch.Apply(harmony);
-				CarpenterMenuPatch.Apply(harmony);
 				JunimoHutPatch.Apply(harmony);
 			}
 			catch (Exception e)

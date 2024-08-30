@@ -157,7 +157,7 @@ namespace BuildableGingerIslandFarm.Utilities
 				frontLayer.Tiles[new(91, 38)] = null;
 				buildingsLayer.Tiles[new(90, 39)] = null;
 				buildingsLayer.Tiles[new(91, 39)] = null;
-				islandWest.shippingBinPosition = new Point(-1000, -1000);
+				islandWest.shippingBinPosition = new Point(int.MinValue, int.MinValue);
 				typeof(IslandWest).GetMethod("resetLocalState", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(islandWest, null);
 				if (!islandWest.modData.ContainsKey($"{ModEntry.ModManifest.UniqueID}_ShippingBin"))
 				{
