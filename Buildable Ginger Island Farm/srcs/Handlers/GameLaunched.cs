@@ -10,6 +10,9 @@ namespace BuildableGingerIslandFarm.Handlers
 		/// <param name="e">The event data.</param>
 		internal static void Apply(object sender, GameLaunchedEventArgs e)
 		{
+			// Register console commands
+			ConsoleCommandsUtility.Register();
+
 			// Initialize GMCM
 			GMCMUtility.Initialize();
 		}
