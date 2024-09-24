@@ -43,22 +43,30 @@ namespace BuildableGingerIslandFarm.Utilities
 		private static void MakeInaccessibleAreasUnbuildable()
 		{
 			GameLocation location = Game1.getLocationFromName("IslandWest");
-			HashSet<Point> tiles = GetInaccessibleAreasTiles();
 
-			foreach (Point tile in tiles)
+			if (location is not null)
 			{
-				location.setTileProperty(tile.X, tile.Y, "Back", "Buildable", "f");
+				HashSet<Point> tiles = GetInaccessibleAreasTiles();
+
+				foreach (Point tile in tiles)
+				{
+					location.setTileProperty(tile.X, tile.Y, "Back", "Buildable", "f");
+				}
 			}
 		}
 
 		private static void MakeFarmAreaBuildable()
 		{
 			GameLocation location = Game1.getLocationFromName("IslandWest");
-			HashSet<Point> tiles = GetFarmAreaTiles();
 
-			foreach (Point tile in tiles)
+			if (location is not null)
 			{
-				location.setTileProperty(tile.X, tile.Y, "Back", "Buildable", "true");
+				HashSet<Point> tiles = GetFarmAreaTiles();
+
+				foreach (Point tile in tiles)
+				{
+					location.setTileProperty(tile.X, tile.Y, "Back", "Buildable", "true");
+				}
 			}
 		}
 
@@ -77,22 +85,30 @@ namespace BuildableGingerIslandFarm.Utilities
 		private static void MakeSlimeAreaUnbuildable()
 		{
 			GameLocation location = Game1.getLocationFromName("IslandWest");
-			HashSet<Point> tiles = GetSlimeAreaTiles();
 
-			foreach (Point tile in tiles)
+			if (location is not null)
 			{
-				location.setTileProperty(tile.X, tile.Y, "Back", "Buildable", "f");
+				HashSet<Point> tiles = GetSlimeAreaTiles();
+
+				foreach (Point tile in tiles)
+				{
+					location.setTileProperty(tile.X, tile.Y, "Back", "Buildable", "f");
+				}
 			}
 		}
 
 		private static void MakeSlimeAreaBuildable()
 		{
 			GameLocation location = Game1.getLocationFromName("IslandWest");
-			HashSet<Point> tiles = GetSlimeAreaTiles();
 
-			foreach (Point tile in tiles)
+			if (location is not null)
 			{
-				location.setTileProperty(tile.X, tile.Y, "Back", "Buildable", "true");
+				HashSet<Point> tiles = GetSlimeAreaTiles();
+
+				foreach (Point tile in tiles)
+				{
+					location.setTileProperty(tile.X, tile.Y, "Back", "Buildable", "true");
+				}
 			}
 		}
 
