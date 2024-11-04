@@ -15,6 +15,9 @@ namespace BuildableGingerIslandFarm.Handlers
 
 			// Localize Ginger Island Farm name
 			MenuUtility.LocalizeGingerIslandFarmDisplayName(e);
+
+			// Edit Island House Cave
+			MapUtility.EditIslandHouseCave(e);
 		}
 	}
 }
