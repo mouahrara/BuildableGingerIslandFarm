@@ -1,0 +1,8 @@
+﻿{
+	// Menu
+	"Menu.GingerIslandFarm.DisplayName": "姜岛农场",
+
+	// GMCM
+	"GMCM.AllowBuildingInSlimeArea.Title": "允许在史莱姆区域建造",
+	"GMCM.AllowBuildingInSlimeArea.Tooltip": "决定是否允许在老虎史莱姆区域建造"
+}
