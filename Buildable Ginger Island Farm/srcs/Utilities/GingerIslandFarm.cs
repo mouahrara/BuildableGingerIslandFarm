@@ -160,11 +160,9 @@ namespace BuildableGingerIslandFarm.Utilities
 			}
 		}
 
-		public static void RemoveShippingBin()
+		public static void RemoveShippingBin(IslandWest islandWest)
 		{
-			GameLocation location = Game1.getLocationFromName("IslandWest");
-
-			if (location is IslandWest islandWest && Game1.player.hasOrWillReceiveMail("Island_UpgradeHouse"))
+			if (Game1.player.hasOrWillReceiveMail("Island_UpgradeHouse"))
 			{
 				Layer frontLayer = islandWest.Map.GetLayer("Front");
 				Layer buildingsLayer = islandWest.Map.GetLayer("Buildings");
@@ -173,8 +171,10 @@ namespace BuildableGingerIslandFarm.Utilities
 				frontLayer.Tiles[new(91, 38)] = null;
 				buildingsLayer.Tiles[new(90, 39)] = null;
 				buildingsLayer.Tiles[new(91, 39)] = null;
-				islandWest.shippingBinPosition = new Point(int.MinValue, int.MinValue);
+				islandWest.shippingBinPosition = new Point(0, 1);
 				typeof(IslandWest).GetMethod("resetLocalState", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(islandWest, null);
+				typeof(IslandWest).GetField("shippingBinLidOpenArea", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(islandWest, new Rectangle(islandWest.shippingBinPosition.X * Game1.tileSize, islandWest.shippingBinPosition.Y * Game1.tileSize, 0, 0));
+				typeof(IslandWest).GetField("shippingBinLid", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(islandWest, null);
 				if (!islandWest.modData.ContainsKey($"{ModEntry.ModManifest.UniqueID}_ShippingBin"))
 				{
 					islandWest.buildStructure(new ShippingBin(), new(90, 39), Game1.MasterPlayer, true);
