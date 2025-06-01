@@ -29,6 +29,7 @@ namespace BuildableGingerIslandFarm
 				Harmony harmony = new(ModManifest.UniqueID);
 
 				// Apply patches
+				AnimalQueryMenuPatch.Apply(harmony);
 				GameLocationPatch.Apply(harmony);
 				IslandWestPatch.Apply(harmony);
 				JunimoHutPatch.Apply(harmony);
