@@ -17,13 +17,13 @@ https://github.com/mouahrara/BuildableGingerIslandFarm/assets/131559634/76425a65
 Chinese (thanks to **txyyh**), English, French and Portuguese (thanks to **NARCOAZAZAL**) translations are included in the base mod, and contributions are welcome. To contribute, please submit a pull request on the [GitHub repository](https://github.com/mouahrara/BuildableGingerIslandFarm/pulls).
 
 ## Compatibility
-Buildable Ginger Island Farm is compatible with Stardew Valley 1.6.0+ on Linux/Mac/Windows, both single-player and multiplayer. It is also compatible with [Lnh's Ginger Island Overhaul](https://www.nexusmods.com/stardewvalley/mods/15939) and [Modest Maps Ginger Island Farm](https://www.nexusmods.com/stardewvalley/mods/8742).
+Buildable Ginger Island Farm is compatible with Stardew Valley 1.6.0+ on Linux/Mac/Windows/Android, both single-player and multiplayer. It is also compatible with [Lnh's Ginger Island Overhaul](https://www.nexusmods.com/stardewvalley/mods/15939) and [Modest Maps Ginger Island Farm](https://www.nexusmods.com/stardewvalley/mods/8742).
 
 ## Frequently Asked Questions
 - **Can I use this mod on an existing save?**\
 Yes, no problem at all.
 - **Can I uninstall this mod without any issues?**\
-Yes, but it is recommended to demolish all the buildings on Ginger Island farm before uninstalling the mod. Without the mod, the Ginger Island farm will no longer be active when you are not there, which could cause unexpected behavior.
+Yes, but it is recommended to demolish all buildings on Ginger Island farm (including the shipping bin) before uninstalling the mod. Without the mod, the Ginger Island farm will no longer be active when you are not there, which could cause unexpected behavior.
 
 ## See also
 - [Release notes](https://github.com/mouahrara/BuildableGingerIslandFarm/releases)
