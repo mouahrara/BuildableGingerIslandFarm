@@ -9,6 +9,7 @@ using StardewModdingAPI.Utilities;
 using StardewValley;
 using StardewValley.Buildings;
 using StardewValley.Menus;
+using BuildableGingerIslandFarm.Utilities;
 
 namespace BuildableGingerIslandFarm.Patches
 {
@@ -24,52 +25,55 @@ namespace BuildableGingerIslandFarm.Patches
 
 		internal static void Apply(Harmony harmony)
 		{
-			if (Constants.TargetPlatform == GamePlatform.Android)
+			if (!Compatibility.IsRelocateBuildingsAndFarmAnimalsLoaded)
 			{
-				harmony.Patch(
-					original: AccessTools.PropertyGetter(typeof(AnimalQueryMenu), "selectedBuildingIndex"),
-					transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetLocationFromNameFarmTranspiler))
-				);
-				harmony.Patch(
-					original: AccessTools.Method(typeof(AnimalQueryMenu), nameof(AnimalQueryMenu.receiveLeftClick)),
-					transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(ReceiveLeftClickTranspiler))
-				);
-				harmony.Patch(
-					original: AccessTools.Method(typeof(AnimalQueryMenu), nameof(AnimalQueryMenu.prepareForAnimalPlacement)),
-					transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetLocationFromNameFarmTranspiler))
-				);
-				harmony.Patch(
-					original: AccessTools.Method(typeof(AnimalQueryMenu), "OnClickTickButton"),
-					transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetFarmTranspiler))
-				);
-				harmony.Patch(
-					original: AccessTools.Method(typeof(AnimalQueryMenu), "OnClickMove"),
-					prefix: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(OnClickMovePrefix))
-				);
-				harmony.Patch(
-					original: AccessTools.Method(typeof(AnimalQueryMenu), "UnhighlightBuildings"),
-					transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetLocationFromNameFarmTranspiler))
-				);
-				harmony.Patch(
-					original: AccessTools.Method(typeof(AnimalQueryMenu), nameof(AnimalQueryMenu.receiveGamePadButton)),
-					transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(ReceiveGamePadButtonTranspiler))
-				);
-			}
-			else
-			{
-				harmony.Patch(
-					original: AccessTools.Method(typeof(AnimalQueryMenu), nameof(AnimalQueryMenu.receiveLeftClick), new Type[] { typeof(int), typeof(int), typeof(bool) }),
-					prefix: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(ReceiveLeftClickPrefix)),
-					transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetFarmTranspiler))
-				);
-				harmony.Patch(
-					original: AccessTools.Method(typeof(AnimalQueryMenu), nameof(AnimalQueryMenu.prepareForAnimalPlacement)),
-					transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetFarmTranspiler))
-				);
-				harmony.Patch(
-					original: AccessTools.Method(typeof(AnimalQueryMenu), nameof(AnimalQueryMenu.performHoverAction)),
-					transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetFarmTranspiler))
-				);
+				if (Constants.TargetPlatform == GamePlatform.Android)
+				{
+					harmony.Patch(
+						original: AccessTools.PropertyGetter(typeof(AnimalQueryMenu), "selectedBuildingIndex"),
+						transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetLocationFromNameFarmTranspiler))
+					);
+					harmony.Patch(
+						original: AccessTools.Method(typeof(AnimalQueryMenu), nameof(AnimalQueryMenu.receiveLeftClick)),
+						transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(ReceiveLeftClickTranspiler))
+					);
+					harmony.Patch(
+						original: AccessTools.Method(typeof(AnimalQueryMenu), nameof(AnimalQueryMenu.prepareForAnimalPlacement)),
+						transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetLocationFromNameFarmTranspiler))
+					);
+					harmony.Patch(
+						original: AccessTools.Method(typeof(AnimalQueryMenu), "OnClickTickButton"),
+						transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetFarmTranspiler))
+					);
+					harmony.Patch(
+						original: AccessTools.Method(typeof(AnimalQueryMenu), "OnClickMove"),
+						prefix: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(OnClickMovePrefix))
+					);
+					harmony.Patch(
+						original: AccessTools.Method(typeof(AnimalQueryMenu), "UnhighlightBuildings"),
+						transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetLocationFromNameFarmTranspiler))
+					);
+					harmony.Patch(
+						original: AccessTools.Method(typeof(AnimalQueryMenu), nameof(AnimalQueryMenu.receiveGamePadButton)),
+						transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(ReceiveGamePadButtonTranspiler))
+					);
+				}
+				else
+				{
+					harmony.Patch(
+						original: AccessTools.Method(typeof(AnimalQueryMenu), nameof(AnimalQueryMenu.receiveLeftClick), new Type[] { typeof(int), typeof(int), typeof(bool) }),
+						prefix: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(ReceiveLeftClickPrefix)),
+						transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetFarmTranspiler))
+					);
+					harmony.Patch(
+						original: AccessTools.Method(typeof(AnimalQueryMenu), nameof(AnimalQueryMenu.prepareForAnimalPlacement)),
+						transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetFarmTranspiler))
+					);
+					harmony.Patch(
+						original: AccessTools.Method(typeof(AnimalQueryMenu), nameof(AnimalQueryMenu.performHoverAction)),
+						transpiler: new HarmonyMethod(typeof(AnimalQueryMenuPatch), nameof(GetFarmTranspiler))
+					);
+				}
 			}
 		}
 
