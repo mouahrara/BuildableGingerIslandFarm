@@ -30,6 +30,8 @@ namespace BuildableGingerIslandFarm
 
 				// Apply patches
 				AnimalQueryMenuPatch.Apply(harmony);
+				CarpenterMenuPatch.Apply(harmony);
+				PurchaseAnimalsMenuPatch.Apply(harmony);
 				GameLocationPatch.Apply(harmony);
 				IslandWestPatch.Apply(harmony);
 				JunimoHutPatch.Apply(harmony);
