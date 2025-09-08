@@ -34,6 +34,7 @@ namespace BuildableGingerIslandFarm
 				PurchaseAnimalsMenuPatch.Apply(harmony);
 				GameLocationPatch.Apply(harmony);
 				IslandWestPatch.Apply(harmony);
+				FarmAnimalPatch.Apply(harmony);
 				JunimoHutPatch.Apply(harmony);
 			}
 			catch (Exception e)
