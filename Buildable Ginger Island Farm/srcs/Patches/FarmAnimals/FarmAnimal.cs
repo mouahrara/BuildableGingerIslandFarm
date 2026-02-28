@@ -9,6 +9,8 @@ namespace BuildableGingerIslandFarm.Patches
 {
 	internal class FarmAnimalPatch
 	{
+		private static readonly FieldInfo FollowTargetField = typeof(FarmAnimal).GetField("_followTarget", BindingFlags.NonPublic | BindingFlags.Instance);
+
 		internal static void Apply(Harmony harmony)
 		{
 			harmony.Patch(
@@ -21,7 +23,7 @@ namespace BuildableGingerIslandFarm.Patches
 		{
 			if (Game1.shouldTimePass() && Game1.IsMasterGame)
 			{
-				FarmAnimal followTarget = (FarmAnimal)typeof(FarmAnimal).GetField("_followTarget", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(__instance);
+				FarmAnimal followTarget = (FarmAnimal)FollowTargetField.GetValue(__instance);
 
 				if (__instance.uniqueFrameAccumulator != -1 && followTarget is not null && !FarmAnimal.GetFollowRange(followTarget, 1).Contains(__instance.StandingPixel))
 				{

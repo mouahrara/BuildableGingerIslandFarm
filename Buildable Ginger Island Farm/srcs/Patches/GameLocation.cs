@@ -1,6 +1,7 @@
 ﻿using System;
 using HarmonyLib;
 using StardewValley;
+using StardewValley.Buildings;
 using BuildableGingerIslandFarm.Utilities;
 
 namespace BuildableGingerIslandFarm.Patches
@@ -14,8 +15,8 @@ namespace BuildableGingerIslandFarm.Patches
 				prefix: new HarmonyMethod(typeof(GameLocationPatch), nameof(IsBuildableLocationPrefix))
 			);
 			harmony.Patch(
-				original: AccessTools.Method(typeof(GameLocation), nameof(GameLocation.ApplyMapOverride), new Type[] { typeof(string), typeof(Microsoft.Xna.Framework.Rectangle?), typeof(Microsoft.Xna.Framework.Rectangle?) }),
-				prefix: new HarmonyMethod(typeof(GameLocationPatch), nameof(ApplyMapOverridePrefix))
+				original: AccessTools.Method(typeof(GameLocation), nameof(GameLocation.OnBuildingMoved), new Type[] { typeof(Building) }),
+				postfix: new HarmonyMethod(typeof(GameLocationPatch), nameof(OnBuildingMovedPostfix))
 			);
 		}
 
@@ -27,13 +28,9 @@ namespace BuildableGingerIslandFarm.Patches
 			}
 		}
 
-		private static bool ApplyMapOverridePrefix(GameLocation __instance, string map_name)
+		private static void OnBuildingMovedPostfix(Building building)
 		{
-			if (__instance.Name.Equals("IslandWest"))
-			{
-				return map_name != "Island_House_Bin";
-			}
-			return true;
+			building.updateInteriorWarps();
 		}
 	}
 }

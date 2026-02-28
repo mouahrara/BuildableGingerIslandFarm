@@ -6,6 +6,7 @@ using System.Reflection.Emit;
 using HarmonyLib;
 using StardewModdingAPI;
 using StardewValley;
+using StardewValley.Buildings;
 using StardewValley.Menus;
 
 namespace BuildableGingerIslandFarm.Patches
@@ -41,6 +42,10 @@ namespace BuildableGingerIslandFarm.Patches
 					transpiler: new HarmonyMethod(typeof(CarpenterMenuPatch), nameof(ResetBoundsTranspiler))
 				);
 			}
+			harmony.Patch(
+				original: AccessTools.Method(typeof(CarpenterMenu), nameof(CarpenterMenu.CanDemolishThis), new Type[] { typeof(Building) }),
+				postfix: new HarmonyMethod(typeof(CarpenterMenuPatch), nameof(CanDemolishThisPostfix))
+			);
 		}
 
 		private static IEnumerable<CodeInstruction> SetUpForBuildingPlacementTranspiler(IEnumerable<CodeInstruction> instructions, MethodBase original)
@@ -184,6 +189,16 @@ namespace BuildableGingerIslandFarm.Patches
 			{
 				ModEntry.Monitor.Log($"There was an issue modifying the instructions for {typeof(CarpenterMenu)}.{original.Name}: {e}", LogLevel.Error);
 				return instructions;
+			}
+		}
+
+		private static void CanDemolishThisPostfix(Building building, ref bool __result)
+		{
+			if (__result)
+			{
+				string text = building?.buildingType.Value;
+
+				__result = !text.Equals($"{ModEntry.ModManifest.UniqueID}_IslandFarmhouse") && !text.Equals($"{ModEntry.ModManifest.UniqueID}_IslandFarmhouseMailbox") && !text.Equals($"{ModEntry.ModManifest.UniqueID}_FarmObelisk");
 			}
 		}
 	}

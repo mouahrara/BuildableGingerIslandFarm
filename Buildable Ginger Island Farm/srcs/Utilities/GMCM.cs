@@ -22,28 +22,29 @@ namespace BuildableGingerIslandFarm.Utilities
 		{
 			// Get Generic Mod Config Menu's API
 			GenericModConfigMenu.IGenericModConfigMenuApi gmcm = ModEntry.Helper.ModRegistry.GetApi<GenericModConfigMenu.IGenericModConfigMenuApi>("spacechase0.GenericModConfigMenu");
-			if (gmcm is null)
-				return;
 
-			// Register mod
-			gmcm.Register(
-				mod: ModEntry.ModManifest,
-				reset: () => ModEntry.Config = new ModConfig(),
-				save: () => ModEntry.Helper.WriteConfig(ModEntry.Config)
-			);
+			if (gmcm is not null)
+			{
+				// Register mod
+				gmcm.Register(
+					mod: ModEntry.ModManifest,
+					reset: () => ModEntry.Config = new ModConfig(),
+					save: () => ModEntry.Helper.WriteConfig(ModEntry.Config)
+				);
 
-			// Main
-			gmcm.AddBoolOption(
-				mod: ModEntry.ModManifest,
-				name: () => ModEntry.Helper.Translation.Get("GMCM.AllowBuildingInSlimeArea.Title"),
-				tooltip: () => ModEntry.Helper.Translation.Get("GMCM.AllowBuildingInSlimeArea.Tooltip"),
-				getValue: () => ModEntry.Config.AllowBuildingInSlimeArea,
-				setValue: (value) =>
-				{
-					ModEntry.Config.AllowBuildingInSlimeArea = value;
-					GingerIslandFarmUtility.UpdateSlimeArea();
-				}
-			);
+				// Main
+				gmcm.AddBoolOption(
+					mod: ModEntry.ModManifest,
+					name: () => ModEntry.Helper.Translation.Get("GMCM.AllowBuildingInSlimeArea.Title"),
+					tooltip: () => ModEntry.Helper.Translation.Get("GMCM.AllowBuildingInSlimeArea.Tooltip"),
+					getValue: () => ModEntry.Config.AllowBuildingInSlimeArea,
+					setValue: (value) =>
+					{
+						ModEntry.Config.AllowBuildingInSlimeArea = value;
+						GingerIslandFarmUtility.UpdateSlimeArea();
+					}
+				);
+			}
 		}
 	}
 }

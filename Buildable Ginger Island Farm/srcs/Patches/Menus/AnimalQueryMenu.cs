@@ -15,6 +15,7 @@ namespace BuildableGingerIslandFarm.Patches
 {
 	internal class AnimalQueryMenuPatch
 	{
+		private static readonly FieldInfo FollowTargetField = typeof(AnimalQueryMenu).GetField(nameof(AnimalQueryMenu.moveHomeButton), BindingFlags.Public | BindingFlags.Instance);
 		private static readonly PerScreen<GameLocation> targetLocation = new();
 
 		public static GameLocation TargetLocation
@@ -151,7 +152,7 @@ namespace BuildableGingerIslandFarm.Patches
 			if (Game1.globalFade || __instance.movingAnimal || __instance.confirmingSell)
 				return;
 
-			ClickableTextureComponent moveHomeButton = (ClickableTextureComponent)typeof(AnimalQueryMenu).GetField(nameof(__instance.moveHomeButton), BindingFlags.Public | BindingFlags.Instance).GetValue(__instance);
+			ClickableTextureComponent moveHomeButton = (ClickableTextureComponent)FollowTargetField.GetValue(__instance);
 
 			if (moveHomeButton.containsPoint(x, y))
 			{

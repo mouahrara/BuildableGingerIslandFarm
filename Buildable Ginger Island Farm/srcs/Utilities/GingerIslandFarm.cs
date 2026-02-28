@@ -1,12 +1,10 @@
 using System.Collections.Generic;
-using System.Reflection;
 using Microsoft.Xna.Framework;
 using xTile.Layers;
 using StardewModdingAPI.Events;
 using StardewValley;
-using StardewValley.GameData.Locations;
 using StardewValley.Locations;
-using StardewValley.Buildings;
+using StardewValley.GameData.Locations;
 
 namespace BuildableGingerIslandFarm.Utilities
 {
@@ -160,27 +158,152 @@ namespace BuildableGingerIslandFarm.Utilities
 			}
 		}
 
-		public static void RemoveShippingBin(IslandWest islandWest)
+		public static void	ApplyFarmHouseRestore(IslandWest islandWest)
 		{
-			if (Game1.player.hasOrWillReceiveMail("Island_UpgradeHouse"))
+			if (islandWest.farmhouseRestored.Value)
 			{
-				Layer frontLayer = islandWest.Map.GetLayer("Front");
-				Layer buildingsLayer = islandWest.Map.GetLayer("Buildings");
+				RestoreIslandFarmhouse(islandWest);
+				RestoreShippingBin(islandWest);
+			}
+			if (islandWest.farmhouseMailbox.Value)
+			{
+				RestoreIslandFarmhouseMailbox(islandWest);
+			}
+		}
 
-				frontLayer.Tiles[new(90, 38)] = null;
-				frontLayer.Tiles[new(91, 38)] = null;
-				buildingsLayer.Tiles[new(90, 39)] = null;
-				buildingsLayer.Tiles[new(91, 39)] = null;
-				islandWest.shippingBinPosition = new Point(0, 1);
-				typeof(IslandWest).GetMethod("resetLocalState", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(islandWest, null);
-				typeof(IslandWest).GetField("shippingBinLidOpenArea", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(islandWest, new Rectangle(islandWest.shippingBinPosition.X * Game1.tileSize, islandWest.shippingBinPosition.Y * Game1.tileSize, 0, 0));
-				typeof(IslandWest).GetField("shippingBinLid", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(islandWest, null);
-				if (!islandWest.modData.ContainsKey($"{ModEntry.ModManifest.UniqueID}_ShippingBin"))
+		public static void	ApplyFarmObeliskBuild(IslandWest islandWest)
+		{
+			if (islandWest.farmObelisk.Value)
+			{
+				RestoreFarmObelisk(islandWest);
+			}
+		}
+
+		private static void	RestoreIslandFarmhouse(IslandWest islandWest)
+		{
+			RemoveIslandFarmhouse(islandWest);
+			if (Game1.player == Game1.MasterPlayer)
+			{
+				islandWest.AddDefaultBuilding($"{ModEntry.ModManifest.UniqueID}_IslandFarmhouse", new(74, 37));
+			}
+		}
+
+		private static void RestoreShippingBin(IslandWest islandWest)
+		{
+			RemoveShippingBin(islandWest);
+			if (Game1.player == Game1.MasterPlayer && !islandWest.modData.ContainsKey($"{ModEntry.ModManifest.UniqueID}_ShippingBin"))
+			{
+				islandWest.AddDefaultBuilding("Shipping Bin", new(90, 39));
+				islandWest.modData.Add($"{ModEntry.ModManifest.UniqueID}_ShippingBin", "T");
+			}
+		}
+
+		private static void	RestoreIslandFarmhouseMailbox(IslandWest islandWest)
+		{
+			RemoveIslandFarmhouseMailbox(islandWest);
+			if (Game1.player == Game1.MasterPlayer)
+			{
+				islandWest.AddDefaultBuilding($"{ModEntry.ModManifest.UniqueID}_IslandFarmhouseMailbox", new(81, 40));
+			}
+		}
+
+		private static void	RestoreFarmObelisk(IslandWest islandWest)
+		{
+			RemoveFarmObelisk(islandWest);
+			if (Game1.player == Game1.MasterPlayer)
+			{
+				islandWest.AddDefaultBuilding($"{ModEntry.ModManifest.UniqueID}_FarmObelisk", new(71, 35));
+			}
+		}
+
+		private static void RemoveIslandFarmhouse(IslandWest islandWest)
+		{
+			Layer alwaysFrontLayer = islandWest.Map.GetLayer("AlwaysFront");
+			Layer frontLayer = islandWest.Map.GetLayer("Front");
+			Layer buildingsLayer = islandWest.Map.GetLayer("Buildings");
+			Layer backLayer = islandWest.Map.GetLayer("Back");
+
+			if (alwaysFrontLayer is not null)
+			{
+				for (int i = 74; i < 80; i++)
 				{
-					islandWest.buildStructure(new ShippingBin(), new(90, 39), Game1.MasterPlayer, true);
-					islandWest.modData.Add($"{ModEntry.ModManifest.UniqueID}_ShippingBin", "T");
+					for (int j = 34; j < 36; j++)
+					{
+						alwaysFrontLayer.Tiles[new(i, j)] = null;
+					}
 				}
 			}
+			if (frontLayer is not null)
+			{
+				for (int i = 74; i < 81; i++)
+				{
+					frontLayer.Tiles[new(i, 36)] = null;
+				}
+			}
+			if (buildingsLayer is not null)
+			{
+				for (int i = 74; i < 81; i++)
+				{
+					for (int j = 37; j < 40; j++)
+					{
+						buildingsLayer.Tiles[new(i, j)] = null;
+					}
+				}
+				for (int i = 74; i < 76; i++)
+				{
+					buildingsLayer.Tiles[new(i, 41)] = null;
+				}
+				for (int i = 79; i < 81; i++)
+				{
+					buildingsLayer.Tiles[new(i, 41)] = null;
+				}
+			}
+			if (backLayer is not null)
+			{
+				for (int i = 75; i < 80; i++)
+				{
+					backLayer.Tiles[new(i, 40)] = backLayer.Tiles[new(77, 39)];
+				}
+				for (int i = 76; i < 79; i++)
+				{
+					backLayer.Tiles[new(i, 41)] = backLayer.Tiles[new(77, 39)];
+				}
+				backLayer.Tiles[new(74, 40)] = backLayer.Tiles[new(76, 36)];
+				backLayer.Tiles[new(80, 40)] = backLayer.Tiles[new(80, 39)];
+			}
+		}
+
+		private static void RemoveShippingBin(IslandWest islandWest)
+		{
+			Layer frontLayer = islandWest.Map.GetLayer("Front");
+			Layer buildingsLayer = islandWest.Map.GetLayer("Buildings");
+
+			frontLayer.Tiles[new(90, 38)] = null;
+			frontLayer.Tiles[new(91, 38)] = null;
+			buildingsLayer.Tiles[new(90, 39)] = null;
+			buildingsLayer.Tiles[new(91, 39)] = null;
+		}
+
+		private static void	RemoveIslandFarmhouseMailbox(IslandWest islandWest)
+		{
+			Layer frontLayer = islandWest.Map.GetLayer("Front");
+			Layer buildingsLayer = islandWest.Map.GetLayer("Buildings");
+
+			frontLayer.Tiles[new(81, 39)] = null;
+			buildingsLayer.Tiles[new(81, 40)] = null;
+		}
+
+		private static void	RemoveFarmObelisk(IslandWest islandWest)
+		{
+			Layer frontLayer = islandWest.Map.GetLayer("Front");
+			Layer buildingsLayer = islandWest.Map.GetLayer("Buildings");
+
+			frontLayer.Tiles[new(71, 35)] = null;
+			frontLayer.Tiles[new(72, 36)] = null;
+			buildingsLayer.Tiles[new(71, 36)] = null;
+			buildingsLayer.Tiles[new(72, 37)] = null;
+			buildingsLayer.Tiles[new(73, 35)] = null;
+			buildingsLayer.Tiles[new(73, 36)] = null;
 		}
 	}
 }
