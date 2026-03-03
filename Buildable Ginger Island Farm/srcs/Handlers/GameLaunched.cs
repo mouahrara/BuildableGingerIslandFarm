@@ -13,6 +13,9 @@ namespace BuildableGingerIslandFarm.Handlers
 			// Register console commands
 			ConsoleCommandsUtility.Register();
 
+			// Register tokens
+			TokensUtility.Register();
+
 			// Initialize GMCM
 			GMCMUtility.Initialize();
 		}

@@ -11,7 +11,7 @@ namespace BuildableGingerIslandFarm.Utilities
 			{
 				e.Edit(asset =>
 				{
-					asset.AsDictionary<string, LocationData>().Data["IslandWest"].DisplayName = ModEntry.Helper.Translation.Get("Menu.GingerIslandFarm.DisplayName");
+					asset.AsDictionary<string, LocationData>().Data["IslandWest"].DisplayName = $"[{ModEntry.ModManifest.UniqueID}_I18n Menu.GingerIslandFarm.DisplayName]";
 				});
 			}
 		}
