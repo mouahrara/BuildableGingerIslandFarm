@@ -24,10 +24,10 @@ namespace BuildableGingerIslandFarm.Utilities
 				{
 					Name = "IslandFarmhouse",
 					Description = "IslandFarmhouse",
-					Texture = ModEntry.Helper.ModContent.GetInternalAssetName("assets/Island Farmhouse").Name,
+					Texture = "Maps/island_tilesheet_1",
 					DrawShadow = false,
 					Size = new Point(7, 5),
-					SourceRect = new Rectangle(0, 0, 112, 144),
+					SourceRect = new Rectangle(112, 496, 112, 144),
 					SortTileOffset = 2f,
 					CollisionMap = "XXXXXXX\nXXXXXXX\nXXXXXXX\nOOOOOOO\nXXOOOXX\n",
 					Builder = "None",

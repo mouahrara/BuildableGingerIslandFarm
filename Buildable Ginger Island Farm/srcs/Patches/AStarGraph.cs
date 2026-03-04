@@ -83,7 +83,6 @@ namespace BuildableGingerIslandFarm.Patches
 			{
 				if ((IsHorizontalTransitionBetween(fromX, x, 73, 74) || IsHorizontalTransitionBetween(fromX, x, 80, 81)) && AreBothAtY(fromY, y, 40))
 				{
-					ModEntry.Monitor.Log($"{fromX}, {fromY} => {x}, {y}", LogLevel.Alert);
 					return true;
 				}
 			}

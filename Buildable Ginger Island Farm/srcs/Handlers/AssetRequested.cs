@@ -19,6 +19,9 @@ namespace BuildableGingerIslandFarm.Handlers
 			// Edit Island West
 			MapUtility.EditIslandWest(e);
 
+			// Edit Island TileSheet
+			TilesheetUtility.EditIslandTileSheet(e);
+
 			// Edit Island House Cave
 			MapUtility.EditIslandHouseCave(e);
 

@@ -10,7 +10,7 @@ namespace BuildableGingerIslandFarm.Utilities
 	{
 		public static void EditIslandWest(AssetRequestedEventArgs e)
 		{
-			if (e.Name.IsEquivalentTo("Maps/Island_W"))
+			if (e.NameWithoutLocale.IsEquivalentTo("Maps/Island_W"))
 			{
 				e.Edit(asset =>
 				{
@@ -24,7 +24,7 @@ namespace BuildableGingerIslandFarm.Utilities
 
 		public static void EditIslandHouseCave(AssetRequestedEventArgs e)
 		{
-			if (e.Name.IsEquivalentTo("Maps/Island_House_Cave"))
+			if (e.NameWithoutLocale.IsEquivalentTo("Maps/Island_House_Cave"))
 			{
 				e.Edit(asset =>
 				{
@@ -94,16 +94,15 @@ namespace BuildableGingerIslandFarm.Utilities
 
 			if (backLayer is not null)
 			{
-				map.AddTileSheet(new TileSheet($"{ModEntry.ModManifest.UniqueID}_TileSheet", map, ModEntry.Helper.ModContent.GetInternalAssetName("assets/z_tilesheet").Name, new Size(16, 16), new Size(16, 16)));
-				for (int i = 74; i < 77; i++)
-				{
-					backLayer.Tiles[new(i, 42)] = backLayer.Tiles[new(73, 42)];
-				}
-				for (int i = 78; i < 81; i++)
-				{
-					backLayer.Tiles[new(i, 42)] = backLayer.Tiles[new(73, 42)];
-				}
-				backLayer.Tiles[new(77, 42)] = new StaticTile(backLayer, map.GetTileSheet($"{ModEntry.ModManifest.UniqueID}_TileSheet"), BlendMode.Alpha, 0);
+				backLayer.Tiles[new(72, 40)] = backLayer.Tiles[new(72, 39)];
+				backLayer.Tiles[new(73, 40)] = backLayer.Tiles[new(73, 39)];
+				backLayer.Tiles[new(72, 41)] = backLayer.Tiles[new(79, 36)];
+				backLayer.Tiles[new(73, 41)] = backLayer.Tiles[new(90, 40)];
+				backLayer.Tiles[new(74, 41)] = backLayer.Tiles[new(73, 39)];
+				backLayer.Tiles[new(75, 41)] = backLayer.Tiles[new(73, 39)];
+				backLayer.Tiles[new(79, 41)] = backLayer.Tiles[new(73, 39)];
+				backLayer.Tiles[new(80, 41)] = backLayer.Tiles[new(73, 39)];
+				backLayer.Tiles[new(81, 41)] = backLayer.Tiles[new(91, 40)];
 			}
 		}
 

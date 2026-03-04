@@ -182,6 +182,7 @@ namespace BuildableGingerIslandFarm.Utilities
 		private static void	RestoreIslandFarmhouse(IslandWest islandWest)
 		{
 			RemoveIslandFarmhouse(islandWest);
+			FixGrass(islandWest);
 			if (Game1.player == Game1.MasterPlayer)
 			{
 				islandWest.AddDefaultBuilding($"{ModEntry.ModManifest.UniqueID}_IslandFarmhouse", new(74, 37));
@@ -270,6 +271,39 @@ namespace BuildableGingerIslandFarm.Utilities
 				}
 				backLayer.Tiles[new(74, 40)] = backLayer.Tiles[new(76, 36)];
 				backLayer.Tiles[new(80, 40)] = backLayer.Tiles[new(80, 39)];
+			}
+		}
+
+		private static void FixGrass(IslandWest islandWest)
+		{
+			if (!Compatibility.IsIslandOverhaulLoaded && !Compatibility.IsModestMapsGingerIslandFarmLoaded)
+			{
+				DefaultFixGrass(islandWest);
+			}
+		}
+
+		private static void	DefaultFixGrass(IslandWest islandWest)
+		{
+			Layer backLayer = islandWest.Map.GetLayer("Back");
+
+			if (backLayer is not null)
+			{
+				backLayer.Tiles[new(74, 39)] = backLayer.Tiles[new(81, 38)];
+				backLayer.Tiles[new(75, 39)] = backLayer.Tiles[new(83, 38)];
+				backLayer.Tiles[new(78, 39)] = backLayer.Tiles[new(72, 37)];
+				backLayer.Tiles[new(79, 39)] = backLayer.Tiles[new(82, 38)];
+				backLayer.Tiles[new(80, 39)] = backLayer.Tiles[new(73, 37)];
+				backLayer.Tiles[new(74, 40)] = backLayer.Tiles[new(73, 39)];
+				backLayer.Tiles[new(75, 40)] = backLayer.Tiles[new(81, 38)];
+				backLayer.Tiles[new(76, 40)] = backLayer.Tiles[new(82, 38)];
+				backLayer.Tiles[new(77, 40)] = backLayer.Tiles[new(82, 38)];
+				backLayer.Tiles[new(78, 40)] = backLayer.Tiles[new(73, 37)];
+				backLayer.Tiles[new(79, 40)] = backLayer.Tiles[new(73, 39)];
+				backLayer.Tiles[new(80, 40)] = backLayer.Tiles[new(73, 39)];
+				for (int i = 76; i < 79; i++)
+				{
+					backLayer.Tiles[new(i, 41)] = backLayer.Tiles[new(73, 39)];
+				}
 			}
 		}
 
