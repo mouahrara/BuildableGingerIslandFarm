@@ -11,19 +11,25 @@ namespace BuildableGingerIslandFarm.Utilities
 		{
 			if (e.NameWithoutLocale.IsEquivalentTo("Maps/island_tilesheet_1"))
 			{
+				bool AnyCompatibleRecolorLoaded = Compatibility.IsDaisyNikoEarthyRecolourLoaded;
+
 				e.Edit(asset =>
 				{
 					IAssetDataForImage TileSheet = asset.AsImage();
 
 					EditTileSheet(TileSheet);
-				}, AssetEditPriority.Early);
+				}, AnyCompatibleRecolorLoaded ? AssetEditPriority.Late : AssetEditPriority.Early);
 			}
 		}
 
 		private static void	EditTileSheet(IAssetDataForImage TileSheet)
 		{
-			Texture2D source = ModEntry.Helper.ModContent.Load<Texture2D>("assets/default");
+			Texture2D source;
 
+			if (Compatibility.IsDaisyNikoEarthyRecolourLoaded)
+				source = ModEntry.Helper.ModContent.Load<Texture2D>("assets/DaisyNikoEarthyRecolour");
+			else
+				source = ModEntry.Helper.ModContent.Load<Texture2D>("assets/default");
 			TileSheet.PatchImage(source, null, new Rectangle(0, 627, 112, 13), PatchMode.Replace);
 			TileSheet.PatchImage(source, null, new Rectangle(112, 627, 112, 13), PatchMode.Replace);
 		}
