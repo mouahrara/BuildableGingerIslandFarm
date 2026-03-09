@@ -23,7 +23,7 @@ Buildable Ginger Island Farm is compatible with Stardew Valley 1.6.0+ on Linux/M
 - **Can I use this mod on an existing save?**\
 Yes, no problem at all.
 - **Can I uninstall this mod without any issues?**\
-Yes, but it is **strongly recommended** to demolish all buildings on the Ginger Island farm (including the island farmhouse, mailbox, and shipping bin) before uninstalling the mod. Without the mod, the Ginger Island farm will no longer be active when you are not there, which may cause unexpected behavior.
+Yes, as long as you follow these steps: just before saving your game (by going to sleep), open the SMAPI console and enter the command `bgif_removebuildings` to remove all buildings on the Ginger Island farm. After sleeping, exit the game and remove the mod from the `Stardew Valley/Mods` folder.
 
 ## See also
 - [Release notes](https://github.com/mouahrara/BuildableGingerIslandFarm/releases)
