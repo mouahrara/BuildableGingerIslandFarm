@@ -66,6 +66,7 @@ namespace BuildableGingerIslandFarm.Utilities
 					Texture = "Maps/Farm Obelisk",
 					DrawShadow = false,
 					Size = new Point(3, 2),
+					SourceRect = new Rectangle(0, 0, 48, 144),
 					DrawOffset = new Vector2(0, 16),
 					Builder = "None",
 					DefaultAction = "FarmObelisk"
