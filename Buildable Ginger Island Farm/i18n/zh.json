@@ -5,4 +5,6 @@
 	// GMCM
 	"GMCM.AllowBuildingInSlimeArea.Title": "允许在史莱姆区域建造",
 	"GMCM.AllowBuildingInSlimeArea.Tooltip": "决定是否允许在老虎史莱姆区域建造"
+	// "GMCM.AllowGrassSpread.Title": "Allow grass to spread",
+	// "GMCM.AllowGrassSpread.Tooltip": "Defines whether or not to allow grass to spread on the Ginger Island farm."
 }

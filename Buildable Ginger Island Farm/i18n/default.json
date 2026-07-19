@@ -4,5 +4,7 @@
 
 	// GMCM
 	"GMCM.AllowBuildingInSlimeArea.Title": "Allow building in the slime area",
-	"GMCM.AllowBuildingInSlimeArea.Tooltip": "Defines whether or not to allow building in the slime area."
+	"GMCM.AllowBuildingInSlimeArea.Tooltip": "Defines whether or not to allow building in the slime area.",
+	"GMCM.AllowGrassSpread.Title": "Allow grass to spread",
+	"GMCM.AllowGrassSpread.Tooltip": "Defines whether or not to allow grass to spread on the Ginger Island farm."
 }

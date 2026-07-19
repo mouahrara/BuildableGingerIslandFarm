@@ -3,6 +3,7 @@ namespace BuildableGingerIslandFarm.Utilities
 	public sealed class ModConfig
 	{
 		public bool	AllowBuildingInSlimeArea = false;
+		public bool	AllowGrassSpread = true;
 	}
 
 	internal class GMCMUtility
@@ -42,6 +43,17 @@ namespace BuildableGingerIslandFarm.Utilities
 					{
 						ModEntry.Config.AllowBuildingInSlimeArea = value;
 						GingerIslandFarmUtility.UpdateSlimeArea();
+					}
+				);
+				gmcm.AddBoolOption(
+					mod: ModEntry.ModManifest,
+					name: () => ModEntry.Helper.Translation.Get("GMCM.AllowGrassSpread.Title"),
+					tooltip: () => ModEntry.Helper.Translation.Get("GMCM.AllowGrassSpread.Tooltip"),
+					getValue: () => ModEntry.Config.AllowGrassSpread,
+					setValue: (value) =>
+					{
+						ModEntry.Config.AllowGrassSpread = value;
+						GingerIslandFarmUtility.UpdateGrassSpread();
 					}
 				);
 			}

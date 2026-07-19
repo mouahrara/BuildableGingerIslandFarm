@@ -4,5 +4,7 @@
 
 	// GMCM
 	"GMCM.AllowBuildingInSlimeArea.Title": "Autoriser la construction dans la zone des slimes",
-	"GMCM.AllowBuildingInSlimeArea.Tooltip": "Définit s'il faut autoriser ou non la construction dans la zone des slimes."
+	"GMCM.AllowBuildingInSlimeArea.Tooltip": "Définit s'il faut autoriser ou non la construction dans la zone des slimes.",
+	"GMCM.AllowGrassSpread.Title": "Autoriser la propagation de l'herbe",
+	"GMCM.AllowGrassSpread.Tooltip": "Définit s'il faut autoriser ou non la propagation de l'herbe sur la ferme de l'île Gingembre."
 }

@@ -158,6 +158,38 @@ namespace BuildableGingerIslandFarm.Utilities
 			}
 		}
 
+		public static void UpdateGrassSpread()
+		{
+			if (ModEntry.Config.AllowGrassSpread)
+			{
+				EnableGrassSpread();
+			}
+			else
+			{
+				DisableGrassSpread();
+			}
+		}
+
+		private static void EnableGrassSpread()
+		{
+			GameLocation location = Game1.getLocationFromName("IslandWest");
+
+			if (location is not null)
+			{
+				location.Map.Properties["EnableGrassSpread"] = "T";
+			}
+		}
+
+		private static void DisableGrassSpread()
+		{
+			GameLocation location = Game1.getLocationFromName("IslandWest");
+
+			if (location is not null)
+			{
+				location.Map.Properties.Remove("EnableGrassSpread");
+			}
+		}
+
 		public static void	ApplyFarmHouseRestore(IslandWest islandWest)
 		{
 			if (islandWest.farmhouseRestored.Value)

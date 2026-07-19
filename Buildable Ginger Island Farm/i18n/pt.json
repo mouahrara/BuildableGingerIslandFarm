@@ -5,4 +5,6 @@
 	// GMCM
 	"GMCM.AllowBuildingInSlimeArea.Title": "Permitir a construção na área de lodo",
 	"GMCM.AllowBuildingInSlimeArea.Tooltip": "Define se deve ou não permitir a construção na área de lodo."
+	// "GMCM.AllowGrassSpread.Title": "Allow grass to spread",
+	// "GMCM.AllowGrassSpread.Tooltip": "Defines whether or not to allow grass to spread on the Ginger Island farm."
 }

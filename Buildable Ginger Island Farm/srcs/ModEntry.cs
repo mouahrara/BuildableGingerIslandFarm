@@ -48,6 +48,7 @@ namespace BuildableGingerIslandFarm
 
 			// Subscribe to events
 			Helper.Events.GameLoop.GameLaunched += GameLaunchedHandler.Apply;
+			Helper.Events.GameLoop.DayEnding += DayEndingHandler.Apply;
 			Helper.Events.Content.AssetRequested += AssetRequestedHandler.Apply;
 		}
 	}
