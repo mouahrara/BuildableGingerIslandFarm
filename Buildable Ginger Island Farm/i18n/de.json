@@ -1,5 +1,12 @@
-{
-  "Menu.GingerIslandFarm.DisplayName": "Ingwer Insel Farm",
-  "GMCM.AllowBuildingInSlimeArea.Title": "Bauen im Schleimgebiet erlauben",
-  "GMCM.AllowBuildingInSlimeArea.Tooltip": "Legt fest, ob im Schleimbereich gebaut werden darf."
+﻿{
+	// Menu
+	"Menu.GingerIslandFarm.DisplayName": "Ingwer Insel Farm",
+
+	// GMCM
+	// "GMCM.AllowGrassSpread.Title": "Allow grass to spread",
+	// "GMCM.AllowGrassSpread.Tooltip": "Defines whether or not to allow grass to spread on the Ginger Island farm.",
+	// "GMCM.AllowSlimeSpawn.Title": "Allow slimes to spawn",
+	// "GMCM.AllowSlimeSpawn.Tooltip": "Defines whether or not to allow tiger slimes to spawn in the slime area. Even when this option is disabled, tiger slimes will keep spawning until the golden walnut rewarded for defeating them has been obtained.",
+	"GMCM.AllowBuildingInSlimeArea.Title": "Bauen im Schleimgebiet erlauben",
+	"GMCM.AllowBuildingInSlimeArea.Tooltip": "Legt fest, ob im Schleimbereich gebaut werden darf."
 }
