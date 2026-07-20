@@ -2,8 +2,9 @@ namespace BuildableGingerIslandFarm.Utilities
 {
 	public sealed class ModConfig
 	{
-		public bool	AllowBuildingInSlimeArea = false;
 		public bool	AllowGrassSpread = true;
+		public bool	AllowSlimeSpawn = true;
+		public bool	AllowBuildingInSlimeArea = false;
 	}
 
 	internal class GMCMUtility
@@ -36,17 +37,6 @@ namespace BuildableGingerIslandFarm.Utilities
 				// Main
 				gmcm.AddBoolOption(
 					mod: ModEntry.ModManifest,
-					name: () => ModEntry.Helper.Translation.Get("GMCM.AllowBuildingInSlimeArea.Title"),
-					tooltip: () => ModEntry.Helper.Translation.Get("GMCM.AllowBuildingInSlimeArea.Tooltip"),
-					getValue: () => ModEntry.Config.AllowBuildingInSlimeArea,
-					setValue: (value) =>
-					{
-						ModEntry.Config.AllowBuildingInSlimeArea = value;
-						GingerIslandFarmUtility.UpdateSlimeArea();
-					}
-				);
-				gmcm.AddBoolOption(
-					mod: ModEntry.ModManifest,
 					name: () => ModEntry.Helper.Translation.Get("GMCM.AllowGrassSpread.Title"),
 					tooltip: () => ModEntry.Helper.Translation.Get("GMCM.AllowGrassSpread.Tooltip"),
 					getValue: () => ModEntry.Config.AllowGrassSpread,
@@ -54,6 +44,28 @@ namespace BuildableGingerIslandFarm.Utilities
 					{
 						ModEntry.Config.AllowGrassSpread = value;
 						GingerIslandFarmUtility.UpdateGrassSpread();
+					}
+				);
+				gmcm.AddBoolOption(
+					mod: ModEntry.ModManifest,
+					name: () => ModEntry.Helper.Translation.Get("GMCM.AllowSlimeSpawn.Title"),
+					tooltip: () => ModEntry.Helper.Translation.Get("GMCM.AllowSlimeSpawn.Tooltip"),
+					getValue: () => ModEntry.Config.AllowSlimeSpawn,
+					setValue: (value) =>
+					{
+						ModEntry.Config.AllowSlimeSpawn = value;
+						GingerIslandFarmUtility.UpdateSlimeSpawn();
+					}
+				);
+				gmcm.AddBoolOption(
+					mod: ModEntry.ModManifest,
+					name: () => ModEntry.Helper.Translation.Get("GMCM.AllowBuildingInSlimeArea.Title"),
+					tooltip: () => ModEntry.Helper.Translation.Get("GMCM.AllowBuildingInSlimeArea.Tooltip"),
+					getValue: () => ModEntry.Config.AllowBuildingInSlimeArea,
+					setValue: (value) =>
+					{
+						ModEntry.Config.AllowBuildingInSlimeArea = value;
+						GingerIslandFarmUtility.UpdateSlimeArea();
 					}
 				);
 			}

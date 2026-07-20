@@ -3,8 +3,10 @@
 	"Menu.GingerIslandFarm.DisplayName": "Ferme de l'île Gingembre",
 
 	// GMCM
-	"GMCM.AllowBuildingInSlimeArea.Title": "Autoriser la construction dans la zone des slimes",
-	"GMCM.AllowBuildingInSlimeArea.Tooltip": "Définit s'il faut autoriser ou non la construction dans la zone des slimes.",
 	"GMCM.AllowGrassSpread.Title": "Autoriser la propagation de l'herbe",
-	"GMCM.AllowGrassSpread.Tooltip": "Définit s'il faut autoriser ou non la propagation de l'herbe sur la ferme de l'île Gingembre."
+	"GMCM.AllowGrassSpread.Tooltip": "Définit s'il faut autoriser ou non la propagation de l'herbe sur la ferme de l'île Gingembre.",
+	"GMCM.AllowSlimeSpawn.Title": "Autoriser l'apparition des slimes",
+	"GMCM.AllowSlimeSpawn.Tooltip": "Définit s'il faut autoriser ou non l'apparition des slimes tigrés dans la zone des slimes. Même lorsque cette option est désactivée, les slimes tigrés continueront d'apparaître tant que la noix dorée obtenue en les vainquant n'aura pas été récupérée.",
+	"GMCM.AllowBuildingInSlimeArea.Title": "Autoriser la construction dans la zone des slimes",
+	"GMCM.AllowBuildingInSlimeArea.Tooltip": "Définit s'il faut autoriser ou non la construction dans la zone des slimes."
 }

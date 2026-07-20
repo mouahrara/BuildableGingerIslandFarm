@@ -43,6 +43,10 @@ namespace BuildableGingerIslandFarm.Patches
 				original: AccessTools.Method(typeof(IslandWest), nameof(IslandWest.UpdateWhenCurrentLocation), new Type[] { typeof(GameTime) }),
 				transpiler: new HarmonyMethod(typeof(IslandWestPatch), nameof(UpdateWhenCurrentLocationTranspiler))
 			);
+			harmony.Patch(
+				original: AccessTools.Method(typeof(IslandWest), "resetSharedState"),
+				postfix: new HarmonyMethod(typeof(IslandWestPatch), nameof(ResetSharedStatePostfix))
+			);
 		}
 
 		private static IEnumerable<CodeInstruction> ShippingBinActionTranspiler(IEnumerable<CodeInstruction> instructions, MethodBase original)
@@ -113,6 +117,11 @@ namespace BuildableGingerIslandFarm.Patches
 				ModEntry.Monitor.Log($"There was an issue modifying the instructions for {typeof(IslandWest)}.{original.Name}: {e}", LogLevel.Error);
 				return instructions;
 			}
+		}
+
+		private static void ResetSharedStatePostfix()
+		{
+			GingerIslandFarmUtility.UpdateSlimeSpawn();
 		}
 	}
 }

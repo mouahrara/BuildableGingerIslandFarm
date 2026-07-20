@@ -4,6 +4,7 @@ using xTile.Layers;
 using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Locations;
+using StardewValley.Monsters;
 using StardewValley.GameData.Locations;
 
 namespace BuildableGingerIslandFarm.Utilities
@@ -107,6 +108,24 @@ namespace BuildableGingerIslandFarm.Utilities
 				{
 					location.setTileProperty(tile.X, tile.Y, "Back", "Buildable", "true");
 				}
+			}
+		}
+
+		public static void UpdateSlimeSpawn()
+		{
+			if (!ModEntry.Config.AllowSlimeSpawn && Game1.MasterPlayer.hasOrWillReceiveMail("tigerSlimeNut"))
+			{
+				RemoveSlimes();
+			}
+		}
+
+		private static void RemoveSlimes()
+		{
+			GameLocation location = Game1.getLocationFromName("IslandWest");
+
+			if (location is not null)
+			{
+				location.characters.RemoveWhere(npc => npc is GreenSlime slime && slime.Name.Equals("Tiger Slime"));
 			}
 		}
 
