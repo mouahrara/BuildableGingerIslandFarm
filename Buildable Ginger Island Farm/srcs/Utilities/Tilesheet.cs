@@ -1,5 +1,5 @@
+using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
 
@@ -7,6 +7,28 @@ namespace BuildableGingerIslandFarm.Utilities
 {
 	internal class TilesheetUtility
 	{
+		private static readonly string[] AssetKeys = new string[]
+		{
+			"assets/CollingBlueGrassRecolor.png",
+			"assets/DaisyNikoEarthyRecolour.png",
+			"assets/GweniaczekMedievalBuildings.png",
+			"assets/default.png"
+		};
+		private static IRawTextureData[] Assets;
+
+		private static IRawTextureData[] GetAssets()
+		{
+			if (Assets is null)
+			{
+				Assets = new IRawTextureData[AssetKeys.Length];
+				for (int i = 0; i < AssetKeys.Length; i++)
+				{
+					Assets[i] = ModEntry.Helper.ModContent.Load<IRawTextureData>(AssetKeys[i]);
+				}
+			}
+			return Assets;
+		}
+
 		public static void EditIslandTileSheet(AssetRequestedEventArgs e)
 		{
 			if (e.NameWithoutLocale.IsEquivalentTo("Maps/island_tilesheet_1"))
@@ -23,48 +45,82 @@ namespace BuildableGingerIslandFarm.Utilities
 
 		private static void	EditTileSheet(IAssetDataForImage TileSheet, int x)
 		{
-			Texture2D source = GetTileSheetSource(TileSheet, x);
+			Color[] area = new Color[112 * 16];
 
-			if (source is not null)
+			TileSheet.Data.GetData(0, new Rectangle(x, 624, 112, 16), area, 0, area.Length);
+
+			IRawTextureData asset = GetMatchingAsset(area);
+
+			if (asset is not null)
 			{
-				TileSheet.PatchImage(source, new Rectangle(0, 13, 112, 13), new Rectangle(x, 627, 112, 13), PatchMode.Replace);
+				ApplyReplacement(TileSheet, area, asset, x);
 			}
 		}
 
-		private static Texture2D GetTileSheetSource(IAssetDataForImage TileSheet, int x)
+		private static IRawTextureData GetMatchingAsset(Color[] area)
 		{
-			Texture2D daisyNikoEarthyRecolourSource = ModEntry.Helper.ModContent.Load<Texture2D>("assets/DaisyNikoEarthyRecolour");
-			Texture2D defaultSource = ModEntry.Helper.ModContent.Load<Texture2D>("assets/default");
-
-			if (IsTileSheetAreaMatching(TileSheet, daisyNikoEarthyRecolourSource, x))
+			foreach (IRawTextureData asset in GetAssets())
 			{
-				return daisyNikoEarthyRecolourSource;
+				if (IsTileSheetAreaMatching(area, asset))
+				{
+					return asset;
+				}
 			}
-			else if (IsTileSheetAreaMatching(TileSheet, defaultSource, x))
-			{
-				return defaultSource;
-			}
-			else
-			{
-				return null;
-			}
+			return null;
 		}
 
-		private static bool	IsTileSheetAreaMatching(IAssetDataForImage TileSheet, Texture2D source, int x)
+		private static bool	IsTileSheetAreaMatching(Color[] area, IRawTextureData asset)
 		{
-			Color[] area = new Color[112 * 13];
-			Color[] reference = new Color[112 * 13];
+			Color[] reference = GetRegionData(asset, new Rectangle(0, 0, 112, 16));
+			Color[] mask = HasMasks(asset) ? GetRegionData(asset, new Rectangle(112, 0, 112, 16)) : null;
 
-			TileSheet.Data.GetData(0, new Rectangle(x, 627, 112, 13), area, 0, area.Length);
-			source.GetData(0, new Rectangle(0, 0, 112, 13), reference, 0, reference.Length);
 			for (int i = 0; i < area.Length; i++)
 			{
+				if (mask is not null && mask[i].A > 0)
+				{
+					continue;
+				}
 				if (area[i] != reference[i])
 				{
 					return false;
 				}
 			}
 			return true;
+		}
+
+		private static void	ApplyReplacement(IAssetDataForImage TileSheet, Color[] area, IRawTextureData asset, int x)
+		{
+			Color[] replacement = GetRegionData(asset, new Rectangle(0, 16, 112, 16));
+			Color[] mask = HasMasks(asset) ? GetRegionData(asset, new Rectangle(112, 16, 112, 16)) : null;
+
+			for (int i = 0; i < area.Length; i++)
+			{
+				if (mask is not null && mask[i].A > 0)
+				{
+					continue;
+				}
+				area[i] = replacement[i];
+			}
+			TileSheet.Data.SetData(0, new Rectangle(x, 624, 112, 16), area, 0, area.Length);
+		}
+
+		private static bool	HasMasks(IRawTextureData asset)
+		{
+			return asset.Width >= 224;
+		}
+
+		private static Color[]	GetRegionData(IRawTextureData asset, Rectangle region)
+		{
+			Color[] data = new Color[region.Width * region.Height];
+
+			for (int row = 0; row < region.Height; row++)
+			{
+				int sourceIndex = (region.Y + row) * asset.Width + region.X;
+				int destIndex = row * region.Width;
+
+				Array.Copy(asset.Data, sourceIndex, data, destIndex, region.Width);
+			}
+			return data;
 		}
 	}
 }
