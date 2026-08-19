@@ -47,7 +47,7 @@ namespace BuildableGingerIslandFarm.Utilities
 		{
 			Color[] area = new Color[112 * 16];
 
-			TileSheet.Data.GetData(0, new Rectangle(x, 624, 112, 16), area, 0, area.Length);
+			MainThreadUtility.Run(() => TileSheet.Data.GetData(0, new Rectangle(x, 624, 112, 16), area, 0, area.Length));
 
 			IRawTextureData asset = GetMatchingAsset(area);
 
@@ -101,7 +101,7 @@ namespace BuildableGingerIslandFarm.Utilities
 				}
 				area[i] = replacement[i];
 			}
-			TileSheet.Data.SetData(0, new Rectangle(x, 624, 112, 16), area, 0, area.Length);
+			MainThreadUtility.Run(() => TileSheet.Data.SetData(0, new Rectangle(x, 624, 112, 16), area, 0, area.Length));
 		}
 
 		private static bool	HasMasks(IRawTextureData asset)
